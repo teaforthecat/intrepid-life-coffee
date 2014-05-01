@@ -33,9 +33,10 @@
   #'system."
   []
   (wc/connect!)
-  (let [app-name "intrepid-life-coffee"]
+  (let [app-name "intrepid-life-coffee"
+        config-string (:config (:zookeeper intrepid-life-coffee.core/config))]
     (wb/create app-name)
-    (kv/store app-name "config\\zookeeper" "127.0.0.1:2181" :content-type "text/plain"))
+    (kv/store app-name "config\\zookeeper" config-string :content-type "text/plain"))
   )
 
 (defn start

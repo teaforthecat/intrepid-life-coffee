@@ -6,14 +6,15 @@
             [datomic.api :as d]
             [io.pedestal.service-tools.server :as server]))
 
+(def config
+  (edn/read-string (slurp "config/system.edn")))
+
 ;; FIXME: has environment data
 (defn connect []
   (alter-var-root  #'sys/system (fn [s]
-                              (assoc s
-                                :connection
-                                (d/connect
-                                 "datomic:riak://localhost:8087/intrepid-life-coffee/intrepid-life-coffee"
-                                 )))))
+                                  (assoc s :connection
+                                         (d/connect (:uri (:db config))
+                                                    )))))
 
 (defn -main [& args]
   (connect)
