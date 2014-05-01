@@ -23,5 +23,6 @@
               ::bootstrap/routes routes
               ;;::bootstrap/allowed-origins ["scheme://host:port"]
               ::bootstrap/resource-path "/public"
+              ::bootstrap/file-path "/public"
               ::bootstrap/type :jetty
               ::bootstrap/port 8080})

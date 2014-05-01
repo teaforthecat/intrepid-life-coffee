@@ -13,3 +13,4 @@ pom.xml.asc
 /.nrepl-port
 /config/riak.dev.properties
 /config/system.edn
+resources/public/js
