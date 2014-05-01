@@ -9,7 +9,7 @@
               [datomic.api :as d]))
 
 (defn home-page   [request]
-  (ring-resp/response (concat "hello World!"
+  (ring-resp/response (str "hello World!"
                               (Q/test-connection "test-ok"))))
 
 (defroutes routes
