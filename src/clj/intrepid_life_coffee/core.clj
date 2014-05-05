@@ -4,7 +4,7 @@
             [intrepid-life-coffee.system :as sys]
             [clojure.edn :as edn]
             [datomic.api :as d]
-            [io.pedestal.service-tools.server :as server]))
+))
 
 (def config
   (edn/read-string (slurp "config/system.edn")))
@@ -18,6 +18,4 @@
 
 (defn -main [& args]
   (connect)
-  (server/init routes/service)
-  (apply server/-main args)
   )

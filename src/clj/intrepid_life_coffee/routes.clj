@@ -1,28 +1,19 @@
 (ns intrepid-life-coffee.routes
-    (:require [intrepid-life-coffee.queries :as Q]
-              [io.pedestal.service.http :as bootstrap]
-              [io.pedestal.service.http.route :as route]
-              [io.pedestal.service.log :as log]
-              [io.pedestal.service.http.body-params :as body-params]
-              [io.pedestal.service.http.route.definition :refer [defroutes]]
-              [ring.util.response :as ring-resp]
-              [datomic.api :as d]))
+  ;; (:require [intrepid-life-coffee.queries :as Q]
+  ;;           [ring.util.response :as ring-resp]
+  ;;           [datomic.api :as d]))
+  (:use intrepid-life-coffee.views
+        [hiccup.middleware :only (wrap-base-url)])
+  (:require [compojure.route :as route]
+            [compojure.core :refer [defroutes GET]]
+            [compojure.handler :as handler]
+            [compojure.response :as response]))
 
-(defn home-page   [request]
-  (ring-resp/response (str "hello World!"
-                              (Q/test-connection "test-ok"))))
+(defroutes main-routes
+  (GET "/" [] (index-page))
+  (route/resources "/" {:root "public/dev"})
+  (route/not-found "Page not found"))
 
-(defroutes routes
-  [[
-    ["/" {:get home-page}
-     ^:interceptors [(body-params/body-params) bootstrap/json-body] ;;builtin intercepter
-     ]]])
-
-
-(def service {:env :prod
-              ::bootstrap/routes routes
-              ;;::bootstrap/allowed-origins ["scheme://host:port"]
-              ::bootstrap/resource-path "/public"
-              ::bootstrap/file-path "/public"
-              ::bootstrap/type :jetty
-              ::bootstrap/port 8080})
+(def app
+  (-> (handler/site main-routes)
+      (wrap-base-url)))

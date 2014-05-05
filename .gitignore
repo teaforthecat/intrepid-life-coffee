@@ -14,3 +14,5 @@ pom.xml.asc
 /config/riak.dev.properties
 /config/system.edn
 resources/public/js
+resources/public/dev/js
+.repl

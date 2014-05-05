@@ -1,12 +1,7 @@
 (ns intrepid-life-coffee.service
-  (:require [intrepid-life-coffee.routes :refer [routes]]
-            [io.pedestal.service.http :as bootstrap]))
+  (:use compojure.core)
+  (:require [compojure.route :as route]))
 
-
-;; FIXME: has environment data
-(def service {:env :prod
-              ::bootstrap/routes routes
-              ;;::bootstrap/allowed-origins ["scheme://host:port"]
-              ::bootstrap/resource-path "/public"
-              ::bootstrap/type :jetty
-              ::bootstrap/port 8080})
+(defroutes app
+  (GET "/" [] "<h1>Hello World</h1>")
+  (route/not-found "<h1>Page not found</h1>"))
