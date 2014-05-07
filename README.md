@@ -29,7 +29,10 @@ user> (go) ;or (init) ;; create the bucket and add zookeeper config
 - start the transactor
 /full/path/to/datomic-pro-0.9.4714/bin/transactor `pwd`/config/riak.dev.properties
 
-$ lein run #doesn't do anything yet
+- start the datomic console
+/full/path/to/datomic-pro-0.9.4714/bin/console -p 8080 intrepid-life-coffee datomic:riak://localhost:8087/intrepid-life-coffee/intrepid-life-coffee
+
+$ lein ring server
 
 ## Copyright and License
 

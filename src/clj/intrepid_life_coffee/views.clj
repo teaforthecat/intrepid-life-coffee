@@ -11,8 +11,9 @@
      ]
     [:body#main
       [:h1 "Hello World"]
-     (include-js "/js/goog/base.js")
+     (include-js "http://fb.me/react-0.9.0.js")
+     ;; (include-js "/js/goog/base.js") ;;for :none
      (include-js "/js/main.js")
-     (include-js "/js/intrepid_life_coffee/core.js")
-     [:script "intrepid_life_coffee.core.main();"]
+     ;; (include-js "/js/intrepid_life_coffee/core.js") ;;for :none
+     [:script "intrepid_life_coffee.core.main()"]
      ]))
