@@ -15,6 +15,8 @@
                                   (assoc s :connection
                                          (d/connect (:uri (:db config))
                                                     )))))
+(defn conn []
+  (:connection sys/system))
 
 (defn -main [& args]
   (connect)

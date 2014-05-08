@@ -19,6 +19,7 @@
                  ;; [com.netflix.curator/curator-framework "1.2.3"]
                  ;; [com.rmoquin.bundle/curator-framework "1.0.1"]
                  [org.apache.curator/curator-framework "2.4.2"]
+                 ;; this results in: ClassNotFoundException com.netflix.curator.framework.CuratorFramework  java.net.URLClassLoader$1.run (URLClassLoader.java:366)
 
                  [com.novemberain/welle "2.0.0"]
                  [com.datomic/datomic-pro "0.9.4714"]
