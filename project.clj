@@ -7,7 +7,7 @@
                  [compojure "1.1.6"]
                  [ring "1.2.1"]
                  [hiccup "1.0.5"]
-                 ;; [org.slf4j/log4j-over-slf4j "1.6.6"] ;;avoids dep loop
+                 [org.slf4j/log4j-over-slf4j "1.6.6"] ;;avoids dep loop "Class path contains multiple SLF4J bindings"
 
 ;; Exception in thread "main" java.lang.NoSuchMethodError: com.google.common.io.ByteStreams.limit(Ljava/io/InputStream;J)Ljava/io/InputStream;
 ;;      at com.google.javascript.jscomp.CommandLineRunner.getDefaultExterns(CommandLineRunner.java:939)
