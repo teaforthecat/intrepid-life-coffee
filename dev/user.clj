@@ -12,41 +12,27 @@
    [clojure.test :as test]
    [clojure.tools.namespace.repl :refer (refresh refresh-all)]
 
-   ;;added
-   [clojurewerkz.welle.core :as wc]
-   [clojurewerkz.welle.buckets :as wb]
-   [clojurewerkz.welle.kv :as kv]
 
    [clojure.edn :as edn]
    [datomic.api :as d]
 
 
-   [intrepid-life-coffee.core]))
-
-(def system
-  "A Var containing an object representing the application under
-  development."
-  nil)
+   [intrepid-life-coffee.system :as sys]
+   [intrepid-life-coffee.core]
+))
 
 (defn init
   "Creates and initializes the system under development in the Var
   #'system."
   []
-  (wc/connect!)
-  (let [app-name "intrepid-life-coffee"
-        config-string (:config (:zookeeper intrepid-life-coffee.core/config))]
-    (wb/create app-name)
-    (kv/store app-name "config\\zookeeper" config-string :content-type "text/plain"))
+  (d/create-database (:uri (:db intrepid-life-coffee.core/config)))
+  (install-schema (sys/connection) "base")
   )
 
 (defn start
   "Starts the system running, updates the Var #'system."
   []
   (intrepid-life-coffee.core/connect)
-  ;; (alter-var-root  #'system (fn [s]
-  ;;                             (assoc s :connection  (let [uri "datomic:riak://localhost:8087/intrepid-life-coffee/intrepid-life-coffee"]
-  ;;                                                     (d/create-database uri)
-  ;;                                                     (d/connect uri)))))
   )
 
 (defn stop

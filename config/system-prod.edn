@@ -1,0 +1,4 @@
+{ :db
+ { :uri "datomic:riak://localhost:8087/intrepid-life-coffee/intrepid-life-coffee"}
+ :zookeeper
+ { :config "127.0.0.1:2181"}}

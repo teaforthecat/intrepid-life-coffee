@@ -1,0 +1,12 @@
+[
+ ;;artists
+ {:db/id #db/id[:db.part/db  -1]
+  :artist/name "Leonardo"}
+ {:db/id #db/id[:db.part/db  -1]
+  :artist/name "da Vinci"}
+
+ ;;artworks
+ {:db/id #db/id[:db.part/db]
+  :artwork/title "Test Figure 1"
+  :artwork/url "http://www.zastavki.com/eng/People/Children/wallpaper-23259.htm"
+  :artwork/artist #db/id[:db.part/db -1]}]
