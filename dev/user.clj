@@ -18,22 +18,19 @@
 
 
    [intrepid-life-coffee.system :as sys]
-   [intrepid-life-coffee.core]
-))
+   [intrepid-life-coffee.core]))
 
 (defn init
   "Creates and initializes the system under development in the Var
   #'system."
   []
   (d/create-database (:uri (:db intrepid-life-coffee.core/config)))
-  (install-schema (sys/connection) "base")
-  )
+  (intrepid-life-coffee.core/install-schema (sys/connection) "base"))
 
 (defn start
   "Starts the system running, updates the Var #'system."
   []
-  (intrepid-life-coffee.core/connect)
-  )
+  (intrepid-life-coffee.core/-main))
 
 (defn stop
   "Stops the system if it is currently running, updates the Var

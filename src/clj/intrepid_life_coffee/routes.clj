@@ -7,13 +7,21 @@
   (:require [compojure.route :as route]
             [compojure.core :refer [defroutes GET]]
             [compojure.handler :as handler]
-            [compojure.response :as response]))
+            [compojure.response :as response]
+            [ring.middleware.params :refer (wrap-params)]
+            [ring.middleware.logger :refer (wrap-with-logger)]
+            [ring.middleware.keyword-params :refer (wrap-keyword-params)]
+            [intrepid-life-coffee.system :as sys]))
 
 (defroutes main-routes
   (GET "/" [] (index-page))
-  (route/resources "/" {:root "public/dev"})
+  (GET "/say" {params :query-params} (say params))
+  (route/resources "/" {:root (sys/resource-root)})
   (route/not-found "Page not found"))
 
 (def app
-  (-> (handler/site main-routes)
-      (wrap-base-url)))
+  (sys/start
+   (-> (handler/site main-routes)
+       (wrap-with-logger)
+       (wrap-params)
+       (wrap-base-url))))

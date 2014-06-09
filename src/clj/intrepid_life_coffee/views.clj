@@ -1,4 +1,6 @@
 (ns intrepid-life-coffee.views
+  (:require [clojure.tools.logging :as l]
+            [intrepid-life-coffee.core :refer (save-say)])
   (:use [hiccup core page]))
 
 (defn index-page []
@@ -17,3 +19,12 @@
      ;; (include-js "/js/intrepid_life_coffee/core.js") ;;for :none
      [:script "intrepid_life_coffee.core.main()"]
      ]))
+
+
+
+(defn say [params]
+  (when-let [greeting (get params "greeting")]
+    (let [result (save-say greeting)]
+      (if (:success result)
+        (html [:p "You nsaid: %s" greeting " " (:number result) " times"  ])
+        (html [:p.error "there was an error"])))))

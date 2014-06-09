@@ -1,0 +1,10 @@
+[
+;;new
+ { :db/id                 #db/id[:db.part/db]
+   :db/ident              :artist/id
+   :db/valueType          :db.type/uuid
+   :db/cardinality        :db.cardinality/one
+   :db/unique             :db.unique/identity
+   :db.install/_attribute :db.part/db
+  }
+]

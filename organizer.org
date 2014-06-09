@@ -1,0 +1,34 @@
+* services
+** datomic
+#+BEGIN_SRC emacs-lisp
+(setq prodigy-view-truncate-by-default t)
+(prodigy-define-service
+ :name "datomic"
+ :command "~/clojure/datomic/datomic-pro-0.9.4714/bin/transactor"
+ :args  '("/Users/cthompson/clojure/intrepid-life-coffee/config/dev.properties"))
+
+(prodigy-define-service
+ :name "ring-server"
+ :cwd "~/clojure/intrepid-life-coffee"
+ :command "lein"
+ :args  '("ring" "server"))
+
+(prodigy-define-service
+ :name "cljsbuild-auto"
+ :cwd "~/clojure/intrepid-life-coffee"
+ :command "lein"
+ :args  '("cljsbuild" "auto"))
+(prodigy-define-service
+ :name "cljsbuild-clean"
+ :cwd "~/clojure/intrepid-life-coffee"
+ :command "lein"
+ :args  '("cljsbuild" "clean"))
+
+
+#+END_SRC
+
+#+RESULTS:
+| :name | cljsbuild-clean | :cwd     | ~/clojure/intrepid-life-coffee                        | :command | lein                                                                  | :args | (cljsbuild clean) |
+| :name | cljsbuild-auto  | :cwd     | ~/clojure/intrepid-life-coffee                        | :command | lein                                                                  | :args | (cljsbuild auto)  |
+| :name | ring-server     | :cwd     | ~/clojure/intrepid-life-coffee                        | :command | lein                                                                  | :args | (ring server)     |
+| :name | datomic         | :command | ~/clojure/datomic/datomic-pro-0.9.4714/bin/transactor | :args    | (/Users/cthompson/clojure/intrepid-life-coffee/config/dev.properties) |       |                   |
